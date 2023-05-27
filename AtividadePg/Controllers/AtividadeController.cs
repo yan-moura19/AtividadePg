@@ -71,5 +71,19 @@ namespace AtividadePg.Controllers
             _context.SaveChanges();
             return Ok();
         }
+        [HttpPut("/Finalizar/{id}")]
+        public IActionResult FinalizarAtividade(Guid id)
+        {
+            Atividade atividadeExistente = _context.atividade.FirstOrDefault(a => a.Id == id);
+            if (atividadeExistente == null)
+            {
+                return NotFound();
+            }
+
+            atividadeExistente.Status = "Finalizada";
+
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }
