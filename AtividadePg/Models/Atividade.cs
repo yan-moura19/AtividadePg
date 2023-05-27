@@ -10,13 +10,13 @@
 
         public DateTime DataFinalizacao { get; set; }
 
-        public Atividade(string nome, string status, DateTime dataFinalizacao)
+        public Atividade(string nome, string status, DateTime dataFinalizacao, DateTime dataCadastro)
         {
             Id = Guid.NewGuid();
             Nome = nome;
             Status = status;
             DataFinalizacao = dataFinalizacao;
-
+            DataCadastro = dataCadastro;
         }
     }
 }
