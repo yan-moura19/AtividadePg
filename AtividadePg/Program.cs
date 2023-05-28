@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors();
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<APIDbContext>(options =>
     options.UseNpgsql("Server=localhost;Port=5432;Pooling=true;Database=postgres;User Id=postgres;Password=0000;"));
@@ -22,7 +22,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
 
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
